@@ -411,7 +411,7 @@ data class Creator(
 
 data class LabelsItem(
 
-	@SerializedName("id"          ) var id          : Int?     = null,
+	@SerializedName("id"          ) var id          : String?     = null,
 	@SerializedName("node_id"     ) var nodeId      : String?  = null,
 	@SerializedName("url"         ) var url         : String?  = null,
 	@SerializedName("name"        ) var name        : String?  = null,

@@ -11,8 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinroomdemo.Utils.CommonMethods
+import com.example.mytestapplication.R
 import com.example.mytestapplication.databinding.FragmentHomeBinding
 import com.example.mytestapplication.model.response.issues_response.IssuesResponseAll
+import com.example.mytestapplication.utils.CustomProgressDialog
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -50,7 +52,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (CommonMethods.isOnline(requireContext())) {
-           // CustomProgressDialog.show(requireContext(), getString(R.string.loading))
+            CustomProgressDialog.show(requireContext(), getString(R.string.loading))
             homeViewModel.getIssuesList()
             setobserver()
         }else{
@@ -69,7 +71,7 @@ class HomeFragment : Fragment() {
         homeViewModel.getList_MutableLiveResponse.observe(
             viewLifecycleOwner,
             Observer { response: List<IssuesResponseAll> ->
-                //CustomProgressDialog.dismissDialog()
+                CustomProgressDialog.dismissDialog()
 
                // AppLogger.errorLogs("ForgotPass Message", "" + response.issuesResponseAll?.get(0)?.body)
 
@@ -85,7 +87,7 @@ class HomeFragment : Fragment() {
             viewLifecycleOwner,
             Observer { errorString: String ->
                 try {
-                    //CustomProgressDialog.dismissDialog()
+                    CustomProgressDialog.dismissDialog()
                     Toast.makeText(context, "" + errorString, Toast.LENGTH_SHORT).show()
                 }catch (e: Exception){
 
